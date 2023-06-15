@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To-Do List</title>
+	<style>
+		body{
+			background-color: cornsilk;
+		}
+		.container {
+			margin: 0 auto;
+			max-width: 600px;
+			padding: 20px;
+			text-align: center;
+		}
+		
+		h1 {
+			font-size: 36px;
+			margin-bottom: 30px;
+		}
+		
+		form input {
+			padding: 10px;
+			width: 60%;
+			margin-right: 10px;
+			border-radius: 5px;
+			border: none;
+		}
+		
+		form button {
+			padding: 10px 20px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		
+		ul {
+			list-style-type: none;
+			padding: 0;
+			margin-top: 30px;
+			text-align: left;
+		}
+		
+		li {
+			display: flex;
+			align-items: center;
+			margin: 10px 0;
+		}
+		
+		li button {
+			padding: 5px 10px;
+			background-color: #dc3545;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-left: 10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>To-Do List</h1>
+		<form>
+			<input type="text" id="item" placeholder="Add New Item">
+			<button type="button" id="add-btn" onclick="addItem()">Add</button>
+		</form>
+		<ol id="item-list"></ol>
+	</div>
+	<script>
+		let itemList = [];
+
+function addItem() {
+	let item = document.getElementById("item").value;
+	if (item) {
+		itemList.push(item);
+		document.getElementById("item").value = "";
+		displayItems();
+	}
+}
+
+function deleteItem(index) {
+	itemList.splice(index, 1);
+	displayItems();
+}
+
+function displayItems() {
+	let list = "";
+	for (let i = 0; i < itemList.length; i++) {
+		list += "<li>" + itemList[i] + "<button onclick='deleteItem(" + i + ")'>Delete</button></li>";
+	}
+	document.getElementById("item-list").innerHTML = list;
+}
+
+	</script>
+</body>
+</html>
